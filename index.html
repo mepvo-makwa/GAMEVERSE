@@ -1,0 +1,1703 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0c12">
+    <meta name="description" content="GAMEVERSE — твой путеводитель по миру видеоигр. Открывай игровые жанры, платформы, технологии и новые игровые вселенные.">
+    <title>GAMEVERSE — Мир видеоигр без границ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0b0c12;
+            --bg-soft: #11131d;
+            --card: #151723;
+            --card-hover: #1b1e2e;
+            --text: #f4f5ff;
+            --muted: #a2a5bb;
+            --purple: #a78bfa;
+            --blue: #65a7ff;
+            --green: #b7ff72;
+            --border: rgba(255, 255, 255, 0.09);
+            --gradient: linear-gradient(120deg, #a78bfa, #65a7ff);
+            --radius: 20px;
+            --container: 1180px;
+            --header-height: 76px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Inter", sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            overflow-wrap: break-word;
+        }
+
+        body::selection {
+            background: var(--purple);
+            color: #0b0c12;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            object-fit: cover;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            color: inherit;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        [tabindex]:focus-visible {
+            outline: 3px solid var(--green);
+            outline-offset: 2px;
+        }
+
+        .btn:focus-visible,
+        .menu-toggle:focus-visible {
+            box-shadow: 0 0 0 4px rgba(183, 255, 114, 0.3);
+        }
+
+        .container {
+            width: min(var(--container), calc(100% - 48px));
+            margin-inline: auto;
+        }
+
+        .section {
+            padding-block: 100px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            color: var(--purple);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 22px;
+            height: 2px;
+            background: var(--green);
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        .logo {
+            font-family: "Space Grotesk", sans-serif;
+        }
+
+        h2 {
+            margin-bottom: 0;
+            font-size: clamp(30px, 4vw, 44px);
+            line-height: 1.2;
+            letter-spacing: -1.5px;
+        }
+
+        .section-description {
+            max-width: 440px;
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .gradient-text {
+            color: var(--purple);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn {
+            display: inline-flex;
+            min-height: 50px;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 22px;
+            border: 1px solid transparent;
+            border-radius: 12px;
+            background: var(--gradient);
+            color: #0b0c12;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(145, 117, 255, 0.23);
+        }
+
+        .btn-secondary {
+            border-color: var(--border);
+            background: rgba(255, 255, 255, 0.045);
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--purple);
+            background: rgba(167, 139, 250, 0.08);
+            box-shadow: none;
+        }
+
+        .arrow {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        /* Header */
+
+        .header {
+            position: sticky;
+            z-index: 100;
+            top: 0;
+            height: var(--header-height);
+            border-bottom: 1px solid var(--border);
+            background: rgba(11, 12, 18, 0.9);
+            backdrop-filter: blur(18px);
+        }
+
+        .header-inner {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            font-size: 23px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .logo-symbol {
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border-radius: 10px;
+            background: var(--gradient);
+            color: var(--bg);
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .logo span:last-child {
+            color: var(--text);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: clamp(14px, 2.2vw, 30px);
+        }
+
+        .nav a {
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--green);
+        }
+
+        .header-action {
+            min-height: 42px;
+            padding: 9px 16px;
+            font-size: 12px;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--card);
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* Hero */
+
+        .hero {
+            position: relative;
+            display: flex;
+            min-height: 630px;
+            align-items: center;
+            overflow: hidden;
+            isolation: isolate;
+            background: #10111b;
+        }
+
+        .hero::before {
+            position: absolute;
+            z-index: -2;
+            inset: 0;
+            background-image:
+                linear-gradient(90deg, #0b0c12 0%, rgba(11, 12, 18, 0.93) 27%, rgba(11, 12, 18, 0.5) 60%, rgba(11, 12, 18, 0.15) 100%),
+                linear-gradient(0deg, #0b0c12 0%, transparent 28%),
+                url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=2000&q=85");
+            background-position: center, center, center;
+            background-size: cover;
+            content: "";
+        }
+
+        .hero::after {
+            position: absolute;
+            z-index: -1;
+            top: 10%;
+            right: 5%;
+            width: 330px;
+            height: 330px;
+            border-radius: 50%;
+            background: rgba(116, 75, 255, 0.16);
+            filter: blur(110px);
+            content: "";
+        }
+
+        .hero-content {
+            max-width: 700px;
+            padding-block: 90px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 8px 13px;
+            border: 1px solid rgba(183, 255, 114, 0.22);
+            border-radius: 50px;
+            background: rgba(183, 255, 114, 0.06);
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 12px rgba(183, 255, 114, 0.7);
+        }
+
+        .hero h1 {
+            max-width: 740px;
+            margin-bottom: 24px;
+            font-size: clamp(43px, 7vw, 78px);
+            font-weight: 700;
+            line-height: 1.04;
+            letter-spacing: -4px;
+        }
+
+        .hero-description {
+            max-width: 490px;
+            margin-bottom: 32px;
+            color: #c0c2d3;
+            font-size: clamp(15px, 1.6vw, 17px);
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 26px;
+            margin-top: 52px;
+            color: #b0b3c7;
+            font-size: 12px;
+        }
+
+        .hero-meta strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--text);
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 21px;
+        }
+
+        /* Genre cards */
+
+        .genres-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .genre-card {
+            position: relative;
+            min-height: 300px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            isolation: isolate;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .genre-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(167, 139, 250, 0.55);
+        }
+
+        .genre-card img {
+            position: absolute;
+            z-index: -2;
+            inset: 0;
+            height: 100%;
+            transition: transform 0.6s ease;
+        }
+
+        .genre-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .genre-card::after {
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(9, 10, 16, 0.98) 0%, rgba(9, 10, 16, 0.72) 44%, rgba(9, 10, 16, 0.08) 100%);
+            content: "";
+        }
+
+        .genre-content {
+            display: flex;
+            min-height: 300px;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+        }
+
+        .genre-number {
+            align-self: flex-start;
+            margin-bottom: auto;
+            padding: 6px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 8px;
+            background: rgba(11, 12, 18, 0.4);
+            color: var(--green);
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 12px;
+        }
+
+        .genre-content h3 {
+            margin-bottom: 7px;
+            font-size: 25px;
+            line-height: 1.2;
+        }
+
+        .genre-content p {
+            max-width: 300px;
+            margin-bottom: 0;
+            color: #c0c2d3;
+            font-size: 13px;
+        }
+
+        /* Platforms */
+
+        .platforms {
+            background: var(--bg-soft);
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .platform-card {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(101, 167, 255, 0.55);
+        }
+
+        .platform-image {
+            height: 215px;
+            overflow: hidden;
+            background: #1b1d2b;
+        }
+
+        .platform-image img {
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .platform-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .platform-content {
+            padding: 25px;
+        }
+
+        .platform-tag {
+            display: inline-block;
+            margin-bottom: 13px;
+            color: var(--blue);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .platform-content h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .platform-content p {
+            margin-bottom: 18px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 9px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            color: #d8daeb;
+            font-size: 12px;
+        }
+
+        .feature-list li::before {
+            flex-shrink: 0;
+            color: var(--green);
+            content: "↗";
+        }
+
+        /* Industry */
+
+        .industry-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .industry-visual {
+            position: relative;
+            min-height: 460px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            background: #151723;
+        }
+
+        .industry-visual img {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+        }
+
+        .industry-visual::after {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(11, 12, 18, 0.92), transparent 70%);
+            content: "";
+        }
+
+        .visual-caption {
+            position: absolute;
+            z-index: 1;
+            right: 24px;
+            bottom: 24px;
+            left: 24px;
+        }
+
+        .visual-caption span {
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .visual-caption h3 {
+            margin: 8px 0 0;
+            font-size: 27px;
+        }
+
+        .industry-copy h2 {
+            margin-bottom: 20px;
+        }
+
+        .industry-copy > p {
+            margin-bottom: 28px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .innovation-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .innovation {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .innovation-icon {
+            display: grid;
+            width: 46px;
+            height: 46px;
+            flex-shrink: 0;
+            place-items: center;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 14px;
+            background: rgba(167, 139, 250, 0.09);
+            font-size: 21px;
+        }
+
+        .innovation h3 {
+            margin: 0 0 5px;
+            font-family: "Inter", sans-serif;
+            font-size: 15px;
+        }
+
+        .innovation p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        /* Games */
+
+        .games {
+            background: var(--bg-soft);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .game-card {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--card);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(183, 255, 114, 0.4);
+        }
+
+        .game-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background: #222538;
+        }
+
+        .game-image img {
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .game-card:hover .game-image img {
+            transform: scale(1.06);
+        }
+
+        .game-category {
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            padding: 6px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.17);
+            border-radius: 8px;
+            background: rgba(11, 12, 18, 0.82);
+            color: var(--text);
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .game-content {
+            padding: 22px;
+        }
+
+        .game-content h3 {
+            margin-bottom: 9px;
+            font-size: 22px;
+        }
+
+        .game-content p {
+            min-height: 62px;
+            margin-bottom: 17px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .game-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            color: #b5b8cc;
+            font-size: 11px;
+        }
+
+        .game-platform {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* Call to action */
+
+        .cta-section {
+            padding-block: 80px;
+        }
+
+        .cta-panel {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(35px, 7vw, 75px) 25px;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            border-radius: 28px;
+            background:
+                radial-gradient(ellipse at 15% 100%, rgba(101, 167, 255, 0.15), transparent 45%),
+                radial-gradient(ellipse at 90% 0%, rgba(167, 139, 250, 0.2), transparent 40%),
+                #141522;
+            text-align: center;
+            isolation: isolate;
+        }
+
+        .cta-panel::before {
+            position: absolute;
+            z-index: -1;
+            top: -120px;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            background: rgba(167, 139, 250, 0.12);
+            filter: blur(75px);
+            content: "";
+        }
+
+        .cta-panel h2 {
+            max-width: 720px;
+            margin: 0 auto 18px;
+            font-size: clamp(32px, 5vw, 54px);
+        }
+
+        .cta-panel p {
+            max-width: 490px;
+            margin: 0 auto 28px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* Footer */
+
+        .footer {
+            border-top: 1px solid var(--border);
+            background: #090a0f;
+        }
+
+        .footer-main {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 55px;
+            padding-block: 55px;
+        }
+
+        .footer-about p {
+            max-width: 310px;
+            margin: 18px 0 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 17px;
+            font-family: "Inter", sans-serif;
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: grid;
+            justify-items: start;
+            gap: 11px;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            font-size: 12px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--green);
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding-block: 20px;
+            border-top: 1px solid var(--border);
+            color: #85889c;
+            font-size: 11px;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+        }
+
+        .footer-note {
+            color: #a7a9ba;
+        }
+
+        /* Responsive */
+
+        @media (min-width: 1500px) {
+            .hero {
+                min-height: 700px;
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .nav {
+                gap: 14px;
+            }
+
+            .nav a {
+                font-size: 11px;
+            }
+
+            .header-action {
+                padding-inline: 12px;
+            }
+
+            .genres-grid,
+            .games-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .industry-layout {
+                gap: 35px;
+            }
+
+            .industry-visual {
+                min-height: 420px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            :root {
+                --header-height: 68px;
+            }
+
+            .container {
+                width: min(100% - 36px, var(--container));
+            }
+
+            .section {
+                padding-block: 70px;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 14px;
+                margin-bottom: 28px;
+            }
+
+            .header-inner {
+                gap: 12px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .menu-toggle {
+                display: inline-flex;
+                margin-left: auto;
+            }
+
+            .header-action {
+                display: none;
+            }
+
+            .nav {
+                position: absolute;
+                top: calc(100% + 1px);
+                right: 0;
+                left: 0;
+                display: none;
+                align-items: stretch;
+                flex-direction: column;
+                gap: 0;
+                padding: 10px 18px 18px;
+                border-bottom: 1px solid var(--border);
+                background: #10111a;
+                box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+            }
+
+            .nav.is-open {
+                display: flex;
+            }
+
+            .nav a {
+                padding: 13px 4px;
+                border-bottom: 1px solid var(--border);
+                font-size: 14px;
+            }
+
+            .nav a:last-child {
+                border-bottom: 0;
+            }
+
+            .hero {
+                min-height: 620px;
+            }
+
+            .hero::before {
+                background-image:
+                    linear-gradient(90deg, rgba(11, 12, 18, 0.92), rgba(11, 12, 18, 0.57)),
+                    linear-gradient(0deg, #0b0c12 0%, transparent 40%),
+                    url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=80");
+                background-position: center;
+            }
+
+            .hero-content {
+                padding-block: 75px;
+            }
+
+            .hero h1 {
+                font-size: clamp(42px, 9vw, 62px);
+                letter-spacing: -2.5px;
+            }
+
+            .hero-meta {
+                gap: 22px;
+                margin-top: 38px;
+            }
+
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-card {
+                display: grid;
+                grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+            }
+
+            .platform-image {
+                height: 100%;
+                min-height: 270px;
+            }
+
+            .platform-content {
+                padding: 22px;
+            }
+
+            .industry-layout {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .industry-visual {
+                min-height: 360px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 35px;
+            }
+
+            .footer-about {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: calc(100% - 32px);
+            }
+
+            .section {
+                padding-block: 58px;
+            }
+
+            .hero {
+                min-height: 620px;
+            }
+
+            .hero h1 {
+                font-size: 43px;
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-buttons {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+            }
+
+            .hero-meta {
+                gap: 18px;
+            }
+
+            .hero-meta strong {
+                font-size: 19px;
+            }
+
+            .genres-grid,
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .genre-card,
+            .genre-content {
+                min-height: 280px;
+            }
+
+            .platform-card {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-image {
+                height: 190px;
+                min-height: 0;
+            }
+
+            .industry-visual {
+                min-height: 300px;
+            }
+
+            .visual-caption h3 {
+                font-size: 23px;
+            }
+
+            .game-image {
+                height: 210px;
+            }
+
+            .game-content p {
+                min-height: 0;
+            }
+
+            .cta-section {
+                padding-block: 50px;
+            }
+
+            .cta-panel {
+                border-radius: 20px;
+            }
+
+            .cta-panel h2 {
+                font-size: 33px;
+                letter-spacing: -1px;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 28px 20px;
+                padding-block: 40px;
+            }
+
+            .footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+    <header class="header">
+        <div class="container header-inner">
+            <a class="logo" href="#top" aria-label="GAMEVERSE — на главную">
+                <span class="logo-symbol" aria-hidden="true">G</span>
+                <span>GAMEVERSE</span>
+            </a>
+
+            <nav class="nav" id="main-nav" aria-label="Главная навигация">
+                <a href="#genres">Жанры</a>
+                <a href="#platforms">Платформы</a>
+                <a href="#industry">Индустрия</a>
+                <a href="#games">Игры</a>
+            </nav>
+
+            <a class="btn header-action" href="#genres">
+                Исследовать <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <button class="menu-toggle" type="button"
+                    aria-label="Открыть меню"
+                    aria-controls="main-nav"
+                    aria-expanded="false">
+                <span aria-hidden="true">☰</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-label">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        Твоя игровая вселенная
+                    </div>
+
+                    <h1 id="hero-title">
+                        Мир видеоигр<br>
+                        <span class="gradient-text">без границ</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        От эпических приключений до киберспортивных арен —
+                        открой мир, где технологии встречаются с воображением,
+                        а каждая игра рассказывает свою историю.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a class="btn" href="#genres">
+                            Открыть игровой мир
+                            <span class="arrow" aria-hidden="true">↗</span>
+                        </a>
+                        <a class="btn btn-secondary" href="#industry">
+                            Исследовать индустрию
+                        </a>
+                    </div>
+
+                    <div class="hero-meta" aria-label="Особенности игровой индустрии">
+                        <div>
+                            <strong>∞</strong>
+                            <span>Миров для открытия</span>
+                        </div>
+                        <div>
+                            <strong>6+</strong>
+                            <span>Основных жанров</span>
+                        </div>
+                        <div>
+                            <strong>24/7</strong>
+                            <span>Игровая культура</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="genres" aria-labelledby="genres-title">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">Найди свой стиль</span>
+                        <h2 id="genres-title">Мир игровых жанров</h2>
+                    </div>
+                    <p class="section-description">
+                        У каждого жанра свой ритм, свои правила и эмоции.
+                        Выбирай направление и отправляйся навстречу новым впечатлениям.
+                    </p>
+                </div>
+
+                <div class="genres-grid">
+                    <article class="genre-card">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
+                             alt="Игровая арена и оборудование для динамичных соревнований"
+                             loading="lazy">
+                        <div class="genre-content">
+                            <span class="genre-number">01 / ACTION</span>
+                            <h3>Экшен</h3>
+                            <p>Динамичные сражения, реакция, испытания и захватывающие приключения.</p>
+                        </div>
+                    </article>
+
+                    <article class="genre-card">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
+                             alt="Фантастический пейзаж, напоминающий игровой мир RPG"
+                             loading="lazy">
+                        <div class="genre-content">
+                            <span class="genre-number">02 / RPG</span>
+                            <h3>RPG</h3>
+                            <p>Большие миры, развитие персонажа, выбор пути и запоминающиеся истории.</p>
+                        </div>
+                    </article>
+
+                    <article class="genre-card">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
+                             alt="Игровой компьютер и периферия на рабочем столе"
+                             loading="lazy">
+                        <div class="genre-content">
+                            <span class="genre-number">03 / STRATEGY</span>
+                            <h3>Стратегии</h3>
+                            <p>Планирование, управление ресурсами и решения, меняющие ход партии.</p>
+                        </div>
+                    </article>
+
+                    <article class="genre-card">
+                        <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80"
+                             alt="Космическое пространство для исследования виртуальных миров"
+                             loading="lazy">
+                        <div class="genre-content">
+                            <span class="genre-number">04 / SIMULATION</span>
+                            <h3>Симуляторы</h3>
+                            <p>Виртуальные профессии, строительство, управление и моделирование жизни.</p>
+                        </div>
+                    </article>
+
+                    <article class="genre-card">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80"
+                             alt="Спортивный автомобиль на дороге"
+                             loading="lazy">
+                        <div class="genre-content">
+                            <span class="genre-number">05 / RACING</span>
+                            <h3>Гонки</h3>
+                            <p>Скорость, точность управления, соревнования и погоня за рекордами.</p>
+                        </div>
+                    </article>
+
+                    <article class="genre-card">
+                        <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=800&q=80"
+                             alt="Мрачная атмосфера с туманом и таинственным освещением"
+                             loading="lazy">
+                        <div class="genre-content">
+                            <span class="genre-number">06 / HORROR</span>
+                            <h3>Хорроры</h3>
+                            <p>Тайны, напряжение, загадки и истории, проверяющие смелость игрока.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section platforms" id="platforms" aria-labelledby="platforms-title">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">Выбирай свою платформу</span>
+                        <h2 id="platforms-title">Где начинается игра?</h2>
+                    </div>
+                    <p class="section-description">
+                        У каждой платформы свои возможности.
+                        Всё зависит от твоих предпочтений, любимых игр и стиля жизни.
+                    </p>
+                </div>
+
+                <div class="platforms-grid">
+                    <article class="platform-card">
+                        <div class="platform-image">
+                            <img src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=800&q=80"
+                                 alt="Настольный игровой компьютер и монитор"
+                                 loading="lazy">
+                        </div>
+                        <div class="platform-content">
+                            <span class="platform-tag">01 — PC GAMING</span>
+                            <h3>Компьютер</h3>
+                            <p>
+                                Гибкая настройка графики, разнообразие игр,
+                                модификации и широкий выбор периферии.
+                            </p>
+                            <ul class="feature-list">
+                                <li>Настройка производительности</li>
+                                <li>Моды и пользовательский контент</li>
+                                <li>Игры разных жанров и поколений</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="platform-card">
+                        <div class="platform-image">
+                            <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?auto=format&fit=crop&w=800&q=80"
+                                 alt="Игровой контроллер для консольных игр"
+                                 loading="lazy">
+                        </div>
+                        <div class="platform-content">
+                            <span class="platform-tag">02 — CONSOLE</span>
+                            <h3>Консоли</h3>
+                            <p>
+                                Удобный запуск игр, игра на большом экране
+                                и продуманный опыт использования.
+                            </p>
+                            <ul class="feature-list">
+                                <li>Простая настройка и управление</li>
+                                <li>Эксклюзивные игровые проекты</li>
+                                <li>Совместная игра на одном экране</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="platform-card">
+                        <div class="platform-image">
+                            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80"
+                                 alt="Смартфон, на котором можно запускать мобильные игры"
+                                 loading="lazy">
+                        </div>
+                        <div class="platform-content">
+                            <span class="platform-tag">03 — MOBILE</span>
+                            <h3>Мобильные устройства</h3>
+                            <p>
+                                Игры всегда под рукой: от коротких головоломок
+                                до масштабных многопользовательских проектов.
+                            </p>
+                            <ul class="feature-list">
+                                <li>Игра практически в любом месте</li>
+                                <li>Большой выбор бесплатных проектов</li>
+                                <li>Управление с сенсорного экрана</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="industry" aria-labelledby="industry-title">
+            <div class="container industry-layout">
+                <div class="industry-visual">
+                    <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=1100&q=85"
+                         alt="Гарнитура виртуальной реальности для погружения в цифровое пространство"
+                         loading="lazy">
+                    <div class="visual-caption">
+                        <span>Next level technology</span>
+                        <h3>Будущее уже загружается</h3>
+                    </div>
+                </div>
+
+                <div class="industry-copy">
+                    <span class="eyebrow">За пределами экрана</span>
+                    <h2 id="industry-title">
+                        Игры меняют<br>
+                        <span class="gradient-text">правила</span>
+                    </h2>
+                    <p>
+                        Игровая индустрия объединяет программирование, дизайн,
+                        музыку, кинематограф и инженерные разработки.
+                        Новые технологии расширяют возможности создателей
+                        и меняют то, как мы взаимодействуем с цифровыми мирами.
+                    </p>
+
+                    <div class="innovation-list">
+                        <article class="innovation">
+                            <div class="innovation-icon" aria-hidden="true">◈</div>
+                            <div>
+                                <h3>Виртуальная реальность</h3>
+                                <p>
+                                    VR-гарнитуры позволяют исследовать трёхмерные
+                                    пространства и взаимодействовать с ними.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="innovation">
+                            <div class="innovation-icon" aria-hidden="true">✳</div>
+                            <div>
+                                <h3>Искусственный интеллект</h3>
+                                <p>
+                                    ИИ помогает создавать поведение персонажей,
+                                    адаптировать игровой процесс и ускорять разработку.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="innovation">
+                            <div class="innovation-icon" aria-hidden="true">⌁</div>
+                            <div>
+                                <h3>Киберспорт</h3>
+                                <p>
+                                    Командные соревнования превращают мастерство игроков
+                                    в зрелищные турниры с международной аудиторией.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="innovation">
+                            <div class="innovation-icon" aria-hidden="true">✧</div>
+                            <div>
+                                <h3>Графика нового поколения</h3>
+                                <p>
+                                    Современное освещение, реалистичные материалы
+                                    и процедурные технологии делают игровые миры выразительнее.
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section games" id="games" aria-labelledby="games-title">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">С чего начать?</span>
+                        <h2 id="games-title">Игры, которые стоит попробовать</h2>
+                    </div>
+                    <p class="section-description">
+                        Шесть известных проектов с разным игровым опытом —
+                        от строительства собственных миров до исследования галактики.
+                    </p>
+                </div>
+
+                <div class="games-grid">
+                    <article class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
+                                 alt="Игровое оборудование в атмосферной игровой комнате"
+                                 loading="lazy">
+                            <span class="game-category">ПЕСОЧНИЦА</span>
+                        </div>
+                        <div class="game-content">
+                            <h3>Minecraft</h3>
+                            <p>
+                                Исследуй процедурно создаваемые миры, добывай ресурсы,
+                                строй сооружения и придумывай собственные приключения.
+                            </p>
+                            <div class="game-footer">
+                                <span>Творчество и выживание</span>
+                                <span class="game-platform">PC · Console · Mobile</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80"
+                                 alt="Фантастический пейзаж для приключений в открытом мире"
+                                 loading="lazy">
+                            <span class="game-category">RPG</span>
+                        </div>
+                        <div class="game-content">
+                            <h3>The Witcher 3</h3>
+                            <p>
+                                Отправляйся в фэнтезийное путешествие в роли Геральта
+                                из Ривии, выполняй задания и принимай непростые решения.
+                            </p>
+                            <div class="game-footer">
+                                <span>Приключение и сюжет</span>
+                                <span class="game-platform">PC · Console</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80"
+                                 alt="Звёздное пространство, напоминающее бескрайнюю галактику"
+                                 loading="lazy">
+                            <span class="game-category">КОСМИЧЕСКОЕ ПРИКЛЮЧЕНИЕ</span>
+                        </div>
+                        <div class="game-content">
+                            <h3>No Man's Sky</h3>
+                            <p>
+                                Исследуй огромную научно-фантастическую вселенную,
+                                открывай планеты, собирай ресурсы и путешествуй между звёздами.
+                            </p>
+                            <div class="game-footer">
+                                <span>Исследование и выживание</span>
+                                <span class="game-platform">PC · Console</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
+                                 alt="Игровая площадка с компьютерами для соревновательных игр"
+                                 loading="lazy">
+                            <span class="game-category">ШУТЕР</span>
+                        </div>
+                        <div class="game-content">
+                            <h3>Counter-Strike 2</h3>
+                            <p>
+                                Командный тактический шутер, в котором важны меткость,
+                                координация, знание карт и совместные решения.
+                            </p>
+                            <div class="game-footer">
+                                <span>Тактика и соревнования</span>
+                                <span class="game-platform">PC</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80"
+                                 alt="Спортивный автомобиль для любителей виртуальных гонок"
+                                 loading="lazy">
+                            <span class="game-category">ГОНКИ</span>
+                        </div>
+                        <div class="game-content">
+                            <h3>Forza Horizon 5</h3>
+                            <p>
+                                Исследуй открытый мир, участвуй в разнообразных
+                                автомобильных соревнованиях и собирай коллекцию машин.
+                            </p>
+                            <div class="game-footer">
+                                <span>Скорость и исследование</span>
+                                <span class="game-platform">PC · Xbox</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="game-card">
+                        <div class="game-image">
+                            <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=800&q=80"
+                                 alt="Мрачный туманный пейзаж для атмосферных приключений"
+                                 loading="lazy">
+                            <span class="game-category">HORROR</span>
+                        </div>
+                        <div class="game-content">
+                            <h3>Resident Evil 4</h3>
+                            <p>
+                                Выживай в опасных ситуациях, исследуй тревожные локации,
+                                решай головоломки и сражайся с противниками.
+                            </p>
+                            <div class="game-footer">
+                                <span>Ужасы и экшен</span>
+                                <span class="game-platform">PC · Console</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section" aria-labelledby="cta-title">
+            <div class="container">
+                <div class="cta-panel">
+                    <span class="eyebrow">Твой следующий уровень</span>
+                    <h2 id="cta-title">
+                        Твоя следующая игровая история
+                        <span class="gradient-text">начинается здесь</span>
+                    </h2>
+                    <p>
+                        Выбери жанр, найди игру по душе и открой вселенную,
+                        в которую захочется возвращаться.
+                    </p>
+                    <a class="btn" href="#games">
+                        Выбрать игру <span class="arrow" aria-hidden="true">↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-about">
+                    <a class="logo" href="#top" aria-label="GAMEVERSE — наверх страницы">
+                        <span class="logo-symbol" aria-hidden="true">G</span>
+                        <span>GAMEVERSE</span>
+                    </a>
+                    <p>
+                        Твой путеводитель по игровой культуре, цифровым мирам
+                        и технологиям, которые формируют будущее развлечений.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Навигация</h3>
+                    <nav class="footer-links" aria-label="Навигация в подвале">
+                        <a href="#genres">Игровые жанры</a>
+                        <a href="#platforms">Платформы</a>
+                        <a href="#industry">Технологии</a>
+                        <a href="#games">Популярные игры</a>
+                    </nav>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Исследуй мир</h3>
+                    <div class="footer-links">
+                        <a href="#genres">Найди свой жанр</a>
+                        <a href="#platforms">Выбери платформу</a>
+                        <a href="#industry">Узнай о технологиях</a>
+                        <a href="#top">Вернуться наверх ↑</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="current-year">2026</span> GAMEVERSE. Все права защищены.</p>
+                <p class="footer-note">Создано для тех, кто играет и исследует.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (() => {
+            const menuButton = document.querySelector(".menu-toggle");
+            const navigation = document.querySelector("#main-nav");
+            const menuIcon = menuButton.querySelector("span");
+
+            function closeMenu() {
+                navigation.classList.remove("is-open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Открыть меню");
+                menuIcon.textContent = "☰";
+            }
+
+            menuButton.addEventListener("click", () => {
+                const isOpen =
+                    menuButton.getAttribute("aria-expanded") === "true";
+
+                if (isOpen) {
+                    closeMenu();
+                } else {
+                    navigation.classList.add("is-open");
+                    menuButton.setAttribute("aria-expanded", "true");
+                    menuButton.setAttribute("aria-label", "Закрыть меню");
+                    menuIcon.textContent = "✕";
+                }
+            });
+
+            navigation.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", closeMenu);
+            });
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
+                    closeMenu();
+                    menuButton.focus();
+                }
+            });
+
+            document.addEventListener("click", (event) => {
+                if (
+                    navigation.classList.contains("is-open") &&
+                    !navigation.contains(event.target) &&
+                    !menuButton.contains(event.target)
+                ) {
+                    closeMenu();
+                }
+            });
+
+            window.addEventListener("resize", () => {
+                if (window.innerWidth > 760) {
+                    closeMenu();
+                }
+            });
+
+            document.querySelector("#current-year").textContent =
+                new Date().getFullYear();
+        })();
+    </script>
+</body>
+</html>
